@@ -4,7 +4,24 @@ use std::{
 };
 
 fn main() {
-    let path_to_toml = std::env::args().nth(1).unwrap_or(String::from("Cake.toml"));
+    let mut path_to_toml = std::env::args().nth(1).unwrap_or(String::from("Cake.toml"));
+
+    if path_to_toml.starts_with("https://github.com") {
+        // Downloads the cake.toml fromm the github repo
+        let split_text = path_to_toml.split("/").collect::<Vec<&str>>();
+        let repo_name = split_text[split_text.len() - 2];
+        let user_name = split_text[split_text.len() - 3];
+
+        let url = format!(
+            "https://raw.githubusercontent.com/{}/{}/master/Cake.toml",
+            user_name, repo_name
+        );
+
+        let response = ureq::get(&url).call();
+        let mut file = File::create(path_to_toml).unwrap();
+        file.write_all(response.into_string().unwrap().as_bytes()).unwrap();
+        path_to_toml = "Cake.toml".to_string();
+    }
 
     // Gets the Cake.toml file
     let toml = fs::read_to_string(path_to_toml).expect("Could not read the Cake.toml file.");

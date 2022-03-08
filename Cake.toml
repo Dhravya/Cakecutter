@@ -9,7 +9,7 @@ author = "Dhravya Shah"
 author_email = "hello@dhravya.dev"
 
 [filestructure]
-root = [".gitignore", "Cargo.toml"]
+root = [".gitignore", "Cargo.toml", "README.md", "LICENSE"]
 examples = ["Python.toml"]
 src = ["main.rs"]
 

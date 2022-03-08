@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 toml = "0.5.8"
+ureq = "0.1.1"
