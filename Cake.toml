@@ -18,3 +18,8 @@ another_directory--some-rs = """
         println!("Hello, world!");
     }
 """
+
+[commands]
+# Commands are executed in the order of the number.
+1 = ["python", "--version"]
+2 = ["pip", "install", "-r", "requirements.txt"]

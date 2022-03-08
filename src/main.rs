@@ -1,6 +1,6 @@
 use std::{
     fs::{self, create_dir, File},
-    io::Write,
+    io::Write
 };
 
 fn main() {
@@ -15,7 +15,9 @@ fn main() {
 
     let filestructure = toml["filestructure"].as_table().unwrap();
     let content = toml["content"].as_table().unwrap();
+    let commands = toml["commands"].as_table().unwrap();
 
+    // Creates the directories and files, and fills with content if any
     for (key, value) in filestructure {
         for file in value.as_array().unwrap() {
             let file = file.as_str().unwrap();
@@ -57,5 +59,19 @@ fn main() {
                 file.write_all(content.as_bytes()).unwrap();
             };
         }
+    }
+
+    // Runs the commands one by one according to the number
+    // I've done this by iterating over numbers from 1 to the number of commands
+
+    for n in 1..commands.len() + 1 {
+        println!("Running command {}", &n.to_string());
+        let command = commands[&n.to_string()].as_array().unwrap();
+        
+        // Runs the command
+        std::process::Command::new(command[0].as_str().unwrap())
+            .args(command[1..].iter().map(|x| x.as_str().unwrap()).collect::<Vec<&str>>())
+            .spawn()
+            .expect("Could not run the command");
     }
 }
