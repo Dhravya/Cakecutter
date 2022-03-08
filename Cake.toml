@@ -1,2 +1,5 @@
 [filestructure]
 root = ['some_file']
+
+[content]
+root__some_file = "This is the content of the file"
