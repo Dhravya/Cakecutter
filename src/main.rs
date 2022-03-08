@@ -11,5 +11,10 @@ fn main() {
 
     for (key, value) in filestructure {
         create_dir(key.as_str()).unwrap();
+
+        for file in value.as_array().unwrap() {
+            let file = file.as_str().unwrap();
+            File::create(format!("{}/{}", key, file)).unwrap();
+        }
     }
 } 
