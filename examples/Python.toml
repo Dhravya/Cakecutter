@@ -1,15 +1,22 @@
 # This is an example to show how a python project can be set up
 [filestructure]
-root = ['.gitignore', '.env', 'requirements.txt']
+root = ['.gitignore', '.env', 'requirements.txt', 'README.md', 'LICENSE']
 src = ['main.py']
 
 [content]
 src--main-py = """
 print("Hello World")
 """
--gitignore = """target/
+
+-gitignore = """
+target/
 .env
-venv/"""
+venv/
+"""
+
+LICENSE = """
+Whatever license you want here
+"""
 
 requirements-txt = """requests"""
 
