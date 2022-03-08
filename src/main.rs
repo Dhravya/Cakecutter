@@ -16,19 +16,34 @@ fn main() {
     let content = toml["content"].as_table().unwrap();
 
     for (key, value) in filestructure {
-        create_dir(key.as_str()).unwrap();
-
         for file in value.as_array().unwrap() {
             let file = file.as_str().unwrap();
-            let mut file = File::create(format!("{}/{}", key, file)).unwrap();
+    
+            let mut filepath = String::new();
+            
+            if key == "root" {
+                filepath = format!("{}", file);
+            } else {
+                filepath = format!("{}/{}", key, file);
+                match create_dir(key) {
+                    Ok(_) => (),
+                    Err(_) => (),
+                };
+            };
+
+            let mut file = File::create(filepath).unwrap();
 
             let content_key = format!(
                 "{}__{}",
                 key,
                 value.as_array().unwrap()[0].as_str().unwrap()
             );
-            let content = content[content_key.as_str()].as_str().unwrap();
-            file.write_all(content.as_bytes()).unwrap();
+
+            // Checks if content key exists
+            if content.contains_key(content_key.as_str()) {
+                let content = content[content_key.as_str()].as_str().unwrap();
+                file.write_all(content.as_bytes()).unwrap();
+            };
         }
     }
 }
