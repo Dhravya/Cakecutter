@@ -1,0 +1,4 @@
+[filestructure]
+root = ['some_file']
+src_ = ['second_main.rs']
+some_directory = ['some_directory']
