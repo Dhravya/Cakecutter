@@ -1,5 +1,5 @@
 <div align="center">
-<img src = "./images/cakecutter.png" width="200">
+<img src = "./images/cakecutter.png" width="400">
 <h1 align="center">Cakecutter</h1>
 <br>
 Create projects from pre-built cakes (templates)! Supports files, packages, content, running commands and more!
