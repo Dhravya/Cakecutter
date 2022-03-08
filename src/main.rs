@@ -42,7 +42,7 @@ fn main() {
                 key,
                 value.as_array().unwrap()[0].as_str().unwrap().replace(".", "-")
             );
-            println!("{}", content_key);
+            
             // Checks if content key exists
             if content.contains_key(content_key.as_str()) {
                 let content = content[content_key.as_str()].as_str().unwrap();
