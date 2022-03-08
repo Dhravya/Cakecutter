@@ -19,30 +19,37 @@ fn main() {
     for (key, value) in filestructure {
         for file in value.as_array().unwrap() {
             let file = file.as_str().unwrap();
+            println!("Creating {}", file);
 
             let mut filepath = String::new();
-            println!(
-                "Creating file at {current}/{file} {filepath}",
-                filepath = filepath,
-                current = key,
-                file = file
-            );
+
+            // If key is root, create in the current directory
             if key == "root" {
                 filepath = format!("{}", file);
             } else {
-                filepath = format!("{}/{}", key, file);
-                match create_dir(key) {
-                    Ok(_) => (),
-                    Err(_) => (),
-                };
+                // filepath = format!("{}/{}", key, file);
+                let mut created = String::new();
+                for folder in key.split("--") {
+                    //  We are matching to prevent the panic from happening
+                    created += &format!("{}/", folder);
+                    match create_dir(created.clone()) {
+                        Ok(_) => (),
+                        Err(_) => (),
+                    }
+                }
+                filepath = format!("{}/{}", created, file);
             };
 
             let mut file = File::create(filepath).unwrap();
 
+            // Creates the "content key" which is basically how it's written in the toml file
             let content_key = format!(
                 "{}--{}",
                 key,
-                value.as_array().unwrap()[0].as_str().unwrap().replace(".", "-")
+                value.as_array().unwrap()[0]
+                    .as_str()
+                    .unwrap()
+                    .replace(".", "-")
             );
 
             // Checks if content key exists
