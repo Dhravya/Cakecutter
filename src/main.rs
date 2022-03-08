@@ -27,7 +27,6 @@ fn main() {
             if key == "root" {
                 filepath = format!("{}", file);
             } else {
-                // filepath = format!("{}/{}", key, file);
                 let mut created = String::new();
                 for folder in key.split("--") {
                     //  We are matching to prevent the panic from happening

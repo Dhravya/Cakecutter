@@ -1,0 +1,10 @@
+# This is an example to show how a python project can be set up
+
+[filestructure]
+root = ['.gitignore', '.env', 'requirements.txt']
+src = ['main.py']
+
+[content]
+src--main-py = """
+print("Hello World")
+"""
