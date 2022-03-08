@@ -1,25 +1,25 @@
+# This is the Cakefile for this project.
+# Feel free to add Cakefiles to your own projects!
+
+[metadata]
+name = "Cakecutter"
+version = "0.1.0"
+description = "Cakecutter template (For rust)"
+author = "Dhravya Shah"
+author_email = "hello@dhravya.dev"
+
 [filestructure]
-# Anything inside the `root` folder will be created in the root directory
-root = ['some_file']
+root = [".gitignore", "Cargo.toml"]
+examples = ["Python.toml"]
+src = ["main.rs"]
 
-# Make new directories and add files inside of them
-another_directory = ['some.rs', 'cool.rs']
-another_directory--directory_inside = ['some.rs', 'cool.rs']
-f--f--f--f = ['f']
-
+# If you want to, you can literally write all the content here in one file but then what's the point of a "template" lol
 [content]
-# You can also add content to the file templates
-root--some_file = """ Multiline strings are cool 
-                    , very, ver cool."""
-
-# all "." are replaced by - and "/" are replaced by "--"
-another_directory--some-rs = """
-fn main() {
-    println!("Hello, world!");
-}
+Cargo-toml = """
+[dependencies]
+toml = "0.5.8"
 """
 
 [commands]
-# Commands are executed in the order of the number.
-1 = ["python", "--version"]
-2 = ["pip", "install", "-r", "requirements.txt"]
+# Commands are run every time a new project is created.
+1 = ["cargo", "install"]
