@@ -4,8 +4,10 @@ use std::{
 };
 
 fn main() {
+    let path_to_toml = std::env::args().nth(1).unwrap_or(String::from("Cake.toml"));
+
     // Gets the Cake.toml file
-    let toml = fs::read_to_string("Cake.toml").expect("Could not read the Cake.toml file.");
+    let toml = fs::read_to_string(path_to_toml).expect("Could not read the Cake.toml file.");
     let toml = match toml.parse::<toml::Value>() {
         Ok(toml) => toml,
         Err(e) => panic!("Could not parse the Cake.toml file: {}", e),
@@ -42,7 +44,7 @@ fn main() {
                 key,
                 value.as_array().unwrap()[0].as_str().unwrap().replace(".", "-")
             );
-            
+
             // Checks if content key exists
             if content.contains_key(content_key.as_str()) {
                 let content = content[content_key.as_str()].as_str().unwrap();
