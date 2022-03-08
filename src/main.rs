@@ -20,7 +20,7 @@ fn main() {
             let file = file.as_str().unwrap();
     
             let mut filepath = String::new();
-
+            println!("{current}/{file} {filepath}", filepath = filepath, current = key, file = file);
             if key == "root" {
                 filepath = format!("{}", file);
             } else {
