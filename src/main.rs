@@ -16,6 +16,21 @@ fn main() {
     let filestructure = toml["filestructure"].as_table().unwrap();
     let content = toml["content"].as_table().unwrap();
     let commands = toml["commands"].as_table().unwrap();
+    
+    if toml.get("metadata").is_some()  {
+        let metadata = toml["metadata"].as_table().unwrap();
+
+        let name = metadata["name"].as_str().unwrap();
+        let description = metadata["description"].as_str().unwrap();
+        let version = metadata["version"].as_str().unwrap();
+        let author = metadata["author"].as_str().unwrap();
+        
+        println!("Using {}", name);
+        println!("{}", description);
+        println!("Version: {}", version);
+        println!("Author: {}", author);
+    }
+    
 
     // Creates the directories and files, and fills with content if any
     for (key, value) in filestructure {

@@ -1,7 +1,15 @@
+[metadata]
+name = "Python CakeCutter"
+version = "0.1.0"
+description = "Builds a Python project from a template"
+author = "Dhravya Shah"
+author_email = "hello@dhravya.dev"
+
 # This is an example to show how a python project can be set up
 [filestructure]
 root = ['.gitignore', '.env', 'requirements.txt', 'README.md', 'LICENSE']
 src = ['main.py']
+# TODO: add support for dots in directory name (.github)
 
 [content]
 src--main-py = """
