@@ -7,7 +7,10 @@ use toml::Value;
 fn main() {
     // Gets the Cake.toml file
     let toml = fs::read_to_string("Cake.toml").expect("Could not read the Cake.toml file.");
-    let toml = toml.parse::<Value>().unwrap();
+    let toml = match toml.parse::<Value>() {
+        Ok(toml) => toml,
+        Err(e) => panic!("Could not parse the Cake.toml file: {}", e),
+    };
 
     let filestructure = toml["filestructure"].as_table().unwrap();
     let content = toml["content"].as_table().unwrap();
