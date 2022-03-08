@@ -1,6 +1,6 @@
 use std::{
     fs::{self, create_dir, File},
-    io::Write
+    io::Write,
 };
 
 fn main() {
@@ -67,10 +67,15 @@ fn main() {
     for n in 1..commands.len() + 1 {
         println!("Running command {}", &n.to_string());
         let command = commands[&n.to_string()].as_array().unwrap();
-        
+
         // Runs the command
         std::process::Command::new(command[0].as_str().unwrap())
-            .args(command[1..].iter().map(|x| x.as_str().unwrap()).collect::<Vec<&str>>())
+            .args(
+                command[1..]
+                    .iter()
+                    .map(|x| x.as_str().unwrap())
+                    .collect::<Vec<&str>>(),
+            )
             .spawn()
             .expect("Could not run the command");
     }

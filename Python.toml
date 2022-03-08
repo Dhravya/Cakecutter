@@ -1,5 +1,4 @@
 # This is an example to show how a python project can be set up
-
 [filestructure]
 root = ['.gitignore', '.env', 'requirements.txt']
 src = ['main.py']
@@ -8,3 +7,13 @@ src = ['main.py']
 src--main-py = """
 print("Hello World")
 """
+-gitignore = """target/
+.env
+venv/"""
+
+requirements-txt = """requests"""
+
+[commands]
+1 = ['python', '-m', 'venv', 'venv']
+2 = ['pip', 'install', '-r', 'requirements.txt']
+3 = ['python', 'src/main.py']
