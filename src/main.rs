@@ -20,7 +20,7 @@ fn main() {
             let file = file.as_str().unwrap();
     
             let mut filepath = String::new();
-            
+
             if key == "root" {
                 filepath = format!("{}", file);
             } else {
@@ -34,7 +34,7 @@ fn main() {
             let mut file = File::create(filepath).unwrap();
 
             let content_key = format!(
-                "{}__{}",
+                "{}--{}",
                 key,
                 value.as_array().unwrap()[0].as_str().unwrap()
             );

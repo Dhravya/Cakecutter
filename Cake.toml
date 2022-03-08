@@ -3,4 +3,4 @@ root = ['some_file']
 another_directory = ['some.rs', 'cool.rs']
 
 [content]
-root__some_file = "This is the content of the file"
+root--some_file = "This is the content of the file"
