@@ -14,9 +14,9 @@ root--some_file = """ Multiline strings are cool
 
 # all "." are replaced by - and "/" are replaced by "--"
 another_directory--some-rs = """
-    fn main() {
-        println!("Hello, world!");
-    }
+fn main() {
+    println!("Hello, world!");
+}
 """
 
 [commands]
