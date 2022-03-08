@@ -2,12 +2,11 @@ use std::{
     fs::{self, create_dir, File},
     io::Write,
 };
-use toml::Value;
 
 fn main() {
     // Gets the Cake.toml file
     let toml = fs::read_to_string("Cake.toml").expect("Could not read the Cake.toml file.");
-    let toml = match toml.parse::<Value>() {
+    let toml = match toml.parse::<toml::Value>() {
         Ok(toml) => toml,
         Err(e) => panic!("Could not parse the Cake.toml file: {}", e),
     };
@@ -18,9 +17,14 @@ fn main() {
     for (key, value) in filestructure {
         for file in value.as_array().unwrap() {
             let file = file.as_str().unwrap();
-    
+
             let mut filepath = String::new();
-            println!("Creating file at {current}/{file} {filepath}", filepath = filepath, current = key, file = file);
+            println!(
+                "Creating file at {current}/{file} {filepath}",
+                filepath = filepath,
+                current = key,
+                file = file
+            );
             if key == "root" {
                 filepath = format!("{}", file);
             } else {
@@ -36,9 +40,9 @@ fn main() {
             let content_key = format!(
                 "{}--{}",
                 key,
-                value.as_array().unwrap()[0].as_str().unwrap()
+                value.as_array().unwrap()[0].as_str().unwrap().replace(".", "-")
             );
-
+            println!("{}", content_key);
             // Checks if content key exists
             if content.contains_key(content_key.as_str()) {
                 let content = content[content_key.as_str()].as_str().unwrap();
