@@ -2,7 +2,7 @@
 name = "cakecutter"
 version = "0.1.0"
 edition = "2021"
-license = "mit"
+license = "MIT"
 description = "Cakecutter is a utility tool to help you create new projects quickly, from pre-built cakes"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
