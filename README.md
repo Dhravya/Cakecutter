@@ -99,7 +99,7 @@ Here's an examples:
 1 = ['python', '-m', 'venv', 'venv']
 2 = ['pip', 'install', '-r', 'requirements.txt']
 3 = ['venv/Scripts/activate']
-4 = ['python', 'src/main.py']
+3 = ['venv/Scripts/python.exe', 'src/main.py']
 ```
 
 
